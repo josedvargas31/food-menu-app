@@ -31,7 +31,7 @@ CREATE TABLE `menus` (
   `id_menu` int(11) NOT NULL,
   `menu` varchar(100) NOT NULL,
   `bebida` varchar(100) NOT NULL,
-  `day` enum('Lunes','Martes','Miercoles','Jueves','Viernes','S?bado','Domingo') NOT NULL
+  `dia` enum('Lunes','Martes','Miercoles','Jueves','Viernes','S?bado','Domingo') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
