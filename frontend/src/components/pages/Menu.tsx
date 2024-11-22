@@ -21,8 +21,7 @@ function Menu() {
 	return (
 		<>
 			<Header />
-			<h1 className="p-6 text-3xl font-bold text-center">Menu 🍲🍺</h1>
-			<div className="container flex justify-center rounded-xl cursor-pointer px-6 xl:px-60 lg:px-40 md:px-16 sm:px-10">
+			<div className="flex justify-center rounded-xl cursor-pointer px-6 xl:px-60 lg:px-40 md:px-16 sm:px-10">
 				<div className="overflow-hidden rounded-lg shadow-lg border px-4 py-4">
 					<div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
 						{menus.map((m) => (
@@ -39,7 +38,7 @@ function Menu() {
 								</div>
 
 								<div className="text-neutral-700 font-semibold pb-2">
-									<strong>Bebida:</strong>
+									<strong>Menu:</strong>
 									<span className="pl-2 font-normal text-slate-600">
 										{m.menu}
 									</span>
