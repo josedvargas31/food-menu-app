@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import Header from "../Header";
+import { useNavigate } from "react-router-dom";
 import axiosClient from "../client/axiosClient";
 import { MenuItem } from "../models/MenuModel";
 
 function Menu() {
 	const [menus, setMenus] = useState<MenuItem[]>([]);
+	const navigate = useNavigate();
 
 	// lista los datos de mi api
 	useEffect(() => {
@@ -21,19 +23,25 @@ function Menu() {
 	return (
 		<>
 			<Header />
-			<div className="flex justify-center rounded-xl cursor-pointer px-6 xl:px-60 lg:px-40 md:px-16 sm:px-10">
+			<div className="flex justify-center pb-10">
+				<button
+					className="transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 text-white rounded-lg px-3 py-2 m-2"
+					onClick={() => navigate("register")}
+				>
+					Registrar menu
+				</button>
+			</div>
+			<div className="flex justify-center rounded-xl px-6 xl:px-60 lg:px-40 md:px-16 sm:px-10">
 				<div className="overflow-hidden rounded-lg shadow-lg border px-4 py-4">
 					<div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
 						{menus.map((m) => (
 							<div
 								key={m.id_menu}
-								className="w- bg-white rounded-lg shadow-md px-4 py-2"
+								className="bg-white rounded-lg shadow-md px-4 py-2 cursor-pointer"
 							>
-								{/* Aquí cada menú está en su propio contenedor */}
-								<div className="text-neutral-700 font-semibold pb-2">
-									<strong>Id:</strong>
-									<span className="pl-2 font-normal text-slate-600">
-										{m.id_menu}
+								<div className="text-neutral-700 font-semibold pb-4">
+									<span className="font-bold text-slate-950 text-xl underline underline-offset-4">
+										Minuta {m.id_menu} 👀
 									</span>
 								</div>
 
