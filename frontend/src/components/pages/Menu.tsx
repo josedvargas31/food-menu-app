@@ -6,12 +6,13 @@ import { MenuItem } from "../models/MenuModel";
 function Menu() {
 	const [menus, setMenus] = useState<MenuItem[]>([]);
 
+	// lista los datos de mi api
 	useEffect(() => {
 		const getMenus = async () => {
 			await axiosClient.get("/api/listar").then((response) => {
 				if (response.status == 200) {
 					setMenus(response.data);
-					console.log(response.data);
+					// console.log(response.data);
 				}
 			});
 		};
@@ -19,46 +20,45 @@ function Menu() {
 	});
 	return (
 		<>
-			<div className="">
-				<Header />
-				<h1 className=""> Hola, soy la vista que tendra todo</h1>
+			<Header />
+			<h1 className="p-6 text-3xl font-bold text-center">Menu 🍲🍺</h1>
+			<div className="container flex justify-center rounded-xl cursor-pointer px-6 xl:px-60 lg:px-40 md:px-16 sm:px-10">
+				<div className="overflow-hidden rounded-lg shadow-lg border px-4 py-4">
+					<div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
+						{menus.map((m) => (
+							<div
+								key={m.id_menu}
+								className="w- bg-white rounded-lg shadow-md px-4 py-2"
+							>
+								{/* Aquí cada menú está en su propio contenedor */}
+								<div className="text-neutral-700 font-semibold pb-2">
+									<strong>Id:</strong>
+									<span className="pl-2 font-normal text-slate-600">
+										{m.id_menu}
+									</span>
+								</div>
 
-				<div className="container flex justify-center rounded-xl shadow-2xl cursor-pointer">
-					<div className="overflow-hidden rounded-lg shadow-lg border dark:bg-zinc-900 p-6">
-						<div className="px-6">
-							<ul>
-								{menus.map((m) => (
-									<li key={m.id_menu} className="text-zinc-300 list-disc">
-										<li className="pb-2 dark:text-zinc-300 text-neutral-700 font-semibold">
-											Bebida:
-											<span className="pl-2 font-normal dark:text-zinc-300 text-slate-600">
-												{m.id_menu}
-											</span>
-										</li>
-										<li className="pb-2 dark:text-zinc-300 text-neutral-700 font-semibold">
-											Bebida:
-											<span className="pl-2 font-normal dark:text-zinc-300 text-slate-600">
-												{m.menu}
-											</span>
-										</li>
+								<div className="text-neutral-700 font-semibold pb-2">
+									<strong>Bebida:</strong>
+									<span className="pl-2 font-normal text-slate-600">
+										{m.menu}
+									</span>
+								</div>
 
-										<li className="pb-2 dark:text-zinc-300 text-neutral-700 font-semibold">
-											Bebida:
-											<span className="pl-2 font-normal dark:text-zinc-300 text-slate-600">
-												{m.bebida}
-											</span>
-										</li>
-
-										<li className="pb-2 dark:text-zinc-300 text-neutral-700 font-semibold">
-											Dia:
-											<span className="pl-2 font-normal dark:text-zinc-300 text-slate-600">
-												{m.dia}
-											</span>
-										</li>
-									</li>
-								))}
-							</ul>
-						</div>
+								<div className="text-neutral-700 font-semibold pb-2">
+									<strong>Bebida:</strong>
+									<span className="pl-2 font-normal text-slate-600">
+										{m.bebida}
+									</span>
+								</div>
+								<div className="text-neutral-700 font-semibold pb-2">
+									<strong>Día:</strong>
+									<span className="pl-2 font-normal text-slate-600">
+										{m.dia}
+									</span>
+								</div>
+							</div>
+						))}
 					</div>
 				</div>
 			</div>
