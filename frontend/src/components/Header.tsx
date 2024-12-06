@@ -11,7 +11,7 @@ function Header() {
 					<h1 className="p-6 text-xl md:text-3xl font-bold text-center">ㅤㅤㅤㅤMenu 🍲🍺</h1>
 				</div>
 
-				<h1 className="text-xl md:text-3xl font-black">Food-menu</h1>
+				<a href="/" className="text-xl md:text-3xl font-black">Food-menu</a>
 			</header>
 		</>
 	);
