@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Menu from "./components/pages/Menu";
 import RegisterMenu from "./components/pages/RegisterMenu";
+import UpdateMenu from "./components/pages/UpdateMenu";
 
 function App() {
 	return (
@@ -8,7 +9,8 @@ function App() {
 			<BrowserRouter>
 				<Routes>
 					<Route path="/" element={<Menu />} />
-					<Route path="Register" element={<RegisterMenu />} />
+					<Route path="/register" element={<RegisterMenu />} />
+					<Route path="/update" element={<UpdateMenu />} />
 				</Routes>
 			</BrowserRouter>
 		</>
