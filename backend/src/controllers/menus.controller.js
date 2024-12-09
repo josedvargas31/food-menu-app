@@ -20,6 +20,30 @@ export const listarMenus = async (req, res) => {
 	}
 };
 
+// listar menu
+export const listarMenu = async (req, res) => {
+	try {
+		const { id_menu } = req.params;
+		const [result] = await pool.query("SELECT * FROM menus WHERE id_menu=?", [
+			id_menu,
+		]);
+
+		if (result.length > 0) {
+			res.status(200).json(result);
+		} else {
+			res.status(403).json({
+				status: 403,
+				message: "No hay menu para listar",
+			});
+		}
+	} catch (error) {
+		res.status(500).json({
+			status: 500,
+			message: "Error en el servidor " + error,
+		});
+	}
+};
+
 // registrar menu
 export const registrarMenu = async (req, res) => {
 	try {
