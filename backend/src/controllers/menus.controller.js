@@ -29,7 +29,7 @@ export const listarMenu = async (req, res) => {
 		]);
 
 		if (result.length > 0) {
-			res.status(200).json(result);
+			res.status(200).json(result[0]);
 		} else {
 			res.status(403).json({
 				status: 403,
