@@ -8,6 +8,19 @@ function Menu() {
 	const [menus, setMenus] = useState<MenuItem[]>([]);
 	const navigate = useNavigate();
 
+	// Delete menu
+	const handleDelete = async (id_menu: number): Promise<void> => {
+		try {
+			const response = await axiosClient.delete(`/api/eliminar/${id_menu}`);
+
+			if (response.status === 200) {
+				alert("Menú eliminado con éxito");
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	// lista los datos de mi api
 	useEffect(() => {
 		const getMenus = async () => {
@@ -20,6 +33,7 @@ function Menu() {
 		};
 		getMenus();
 	});
+	
 	return (
 		<>
 			<Header />
@@ -65,8 +79,20 @@ function Menu() {
 									</span>
 								</div>
 								<div className="flex justify-between">
-									<button type="button" className="transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 text-white rounded-lg px-2 py-2 m-2" onClick={() => navigate(`update/${m.id_menu}`)}>Editar</button>
-									<button type="button" className="transition ease-in-out delay-150 bg-red-500 hover:-translate-y-1 hover:scale-110 hover:bg-amber-600 duration-300 text-white rounded-lg px-2 py-2 m-2">Eliminar</button>
+									<button
+										type="button"
+										className="transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 text-white rounded-lg px-2 py-2 m-2"
+										onClick={() => navigate(`update/${m.id_menu}`)}
+									>
+										Editar
+									</button>
+									<button
+										type="button"
+										className="transition ease-in-out delay-150 bg-red-500 hover:-translate-y-1 hover:scale-110 hover:bg-amber-600 duration-300 text-white rounded-lg px-2 py-2 m-2"
+										onClick={() => handleDelete(m.id_menu)}
+									>
+										Eliminar
+									</button>
 								</div>
 							</div>
 						))}
