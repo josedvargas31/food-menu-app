@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from "react";
 import axiosClient from "../client/axiosClient";
 import Header from "../Header";
 import { useNavigate, useParams } from "react-router-dom";
+import { MenuItem } from "../models/MenuModel";
 
 type FormElement = React.FormEvent<HTMLFormElement>;
 
@@ -15,9 +16,9 @@ function UpdateMenu() {
 	const { id_menu } = useParams<{ id_menu: string }>();
 
 useEffect(() => {
-	const fetchMenu = async () => {
+	const fetchMenu = async (): Promise<void> => {
 		try {
-			const response = await axiosClient.get(`/api/listar/${id_menu}`);
+			const response = await axiosClient.get<MenuItem>(`/api/listar/${id_menu}`);
 			const data = response.data;
 
 			if (menu.current) menu.current.value = data.menu || "";
