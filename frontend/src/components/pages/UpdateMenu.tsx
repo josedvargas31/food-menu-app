@@ -14,7 +14,25 @@ function UpdateMenu() {
 	// Obtener id
 	const { id_menu } = useParams<{ id_menu: string }>();
 
+useEffect(() => {
+	const fetchMenu = async () => {
+		try {
+			const response = await axiosClient.get(`/api/listar/${id_menu}`);
+			const data = response.data;
 
+			if (menu.current) menu.current.value = data.menu || "";
+			if (bebida.current) bebida.current.value = data.bebida || "";
+			if (dia.current) dia.current.value = data.dia || "";
+
+		} catch (error) {
+			alert("Error al cargar los datos del menú");
+			console.log(error);
+			
+		}
+	}
+	fetchMenu()
+
+}, [id_menu])
 	const hangleSubmit = async (e: FormElement) => {
 		e.preventDefault();
 		const data = {
@@ -23,7 +41,7 @@ function UpdateMenu() {
 			dia: dia.current?.value,
 		};
 		try {
-			const response = await axiosClient.put(`api/actualizar${id_menu}`, data);
+			const response = await axiosClient.put(`api/actualizar/${id_menu}`, data);
 			if (response.status === 200) {
 				alert("Menú actualizado con éxito");
 				navigate("/");
